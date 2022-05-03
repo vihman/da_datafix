@@ -53,3 +53,14 @@ Imputating all data fields' missing values with Last Known Good value.
     print(temp.get_fields())
     temp.fix_lastknown("*")
     temp_pandas = temp.get_data_pd()
+
+
+Slicing time window:
+
+.. code-block:: python
+    start = datetime.fromisoformat("2021-10-08")
+    end = datetime.fromisoformat("2021-10-10")
+    data_win = temp.get_data_window(start_time=start, end_time=end)
+    plt.plot(data_win["timestamp"], data_win["139_value"], label="139")
+    plt.plot(data_win["timestamp"], data_win["140_value"], label="140")
+    plt.show()

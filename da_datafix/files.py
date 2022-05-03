@@ -78,7 +78,7 @@ def from_csv(filename: str, headerline: Optional[bool] = True) -> DataModel:
                         raise e
             return tuple(result)
         if '"' in line:  # This is old style format - "34,56","78,90"
-            elements = re.split(r',(?=["n])', line)
+            elements = re.split(r',(?=["n])', line)  # nan is without quotes
             elements = [re.sub(r'"?(\d+),(\d+)"?', r"\1.\2", e) for e in elements] # commas to dots & strip quotes if needed
         else:
             elements = line.split(delimiter)

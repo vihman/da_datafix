@@ -29,12 +29,12 @@ class DataModel:
     def get_data_window(self, start_time: datetime, end_time: datetime,
                         time_field: Optional[str] = "timestamp") -> np.array:
         """
-        Get slice data to only needed time window
+        Get slice data to only needed time window.
 
         Args:
             time_field: field name of timestamp values for slicing.
-            start_time: starting time of the slice.
-            end_time:  ending time of the slice.
+            start_time: starting time of the slice. Will be included in slice.
+            end_time:  ending time of the slice. Will be included.
 
         Returns:
             `Structured numpy array`_.
@@ -49,10 +49,9 @@ class DataModel:
         def get_idx(val, arr):
             return bisect.bisect_right(arr[time_field], val)
 
-        start_idx = get_idx(start_time, self.data)
+        start_idx = max(get_idx(start_time, self.data) - 1, 0)
         end_idx = get_idx(end_time, self.data)
         return self.data[start_idx:end_idx]
-
 
     def get_data(self) -> np.array:
         """
@@ -114,7 +113,7 @@ class DataModel:
 # test slicing
 # write csv
 # split to different fields.
-# TODO: test slicing
+# OK: test slicing
 # TODO: CO2 baastaseme muutus
 # TODO: Kumulatiivsete andmete aukude täitmine - elekter, soojus, vesi (see mis arutasime, Kalman filter ilmselt?)
 # TODO: https://gitlab.com/gitlab-org/gitlab/-/issues/209301
