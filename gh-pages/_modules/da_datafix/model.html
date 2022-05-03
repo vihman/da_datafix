@@ -1,0 +1,208 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>da_datafix.model &#8212; da_datafix  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bizstyle.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">da_datafix  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">da_datafix.model</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for da_datafix.model</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">bisect</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">numpy.lib</span> <span class="kn">import</span> <span class="n">recfunctions</span>
+
+<span class="kn">import</span> <span class="nn">da_datafix.fix</span> <span class="k">as</span> <span class="nn">fix</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="DataModel"><a class="viewcode-back" href="../../da_datafix.html#da_datafix.model.DataModel">[docs]</a><span class="k">class</span> <span class="nc">DataModel</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">     Digiaudit time series data model. Data is kept in numpy structured arrays.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datalist</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Init model. Better to do it from fileimport</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            datalist: list to be converted to ndArray.</span>
+<span class="sd">            dtype: datatype of the list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">datalist</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DataModel.get_data_window"><a class="viewcode-back" href="../../da_datafix.html#da_datafix.model.DataModel.get_data_window">[docs]</a>    <span class="k">def</span> <span class="nf">get_data_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">end_time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span>
+                        <span class="n">time_field</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get slice data to only needed time window.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            time_field: field name of timestamp values for slicing.</span>
+<span class="sd">            start_time: starting time of the slice. Will be included in slice.</span>
+<span class="sd">            end_time:  ending time of the slice. Will be included.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            `Structured numpy array`_.</span>
+
+<span class="sd">        .. _Structured numpy array:</span>
+<span class="sd">            https://numpy.org/doc/stable/user/basics.rec.html</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">get_ndarr_index</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ndarr</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">ndarr</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">get_idx</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">arr</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">bisect</span><span class="o">.</span><span class="n">bisect_right</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">time_field</span><span class="p">],</span> <span class="n">val</span><span class="p">)</span>
+
+        <span class="n">start_idx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">get_idx</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">end_idx</span> <span class="o">=</span> <span class="n">get_idx</span><span class="p">(</span><span class="n">end_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="DataModel.get_data"><a class="viewcode-back" href="../../da_datafix.html#da_datafix.model.DataModel.get_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get data as numpy structured array.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            `Structured numpy array`_</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span></div>
+
+<div class="viewcode-block" id="DataModel.get_data_pd"><a class="viewcode-back" href="../../da_datafix.html#da_datafix.model.DataModel.get_data_pd">[docs]</a>    <span class="k">def</span> <span class="nf">get_data_pd</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Copy data as Pandas Dataframe object.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">             data as pd.DataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="DataModel.get_fields"><a class="viewcode-back" href="../../da_datafix.html#da_datafix.model.DataModel.get_fields">[docs]</a>    <span class="k">def</span> <span class="nf">get_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get named fields of model&#39;s data structure.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of field names.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span></div>
+
+    <span class="k">def</span> <span class="nf">_add_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dat</span><span class="p">,</span> <span class="n">kf_smooth</span><span class="p">):</span>
+        <span class="n">recfunctions</span><span class="o">.</span><span class="n">append_fields</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="s1">&#39;KF_Smooth&#39;</span><span class="p">,</span> <span class="n">kf_smooth</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">asrecarray</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="ne">NotImplementedError</span>
+
+<div class="viewcode-block" id="DataModel.adjust_baseline"><a class="viewcode-back" href="../../da_datafix.html#da_datafix.model.DataModel.adjust_baseline">[docs]</a>    <span class="k">def</span> <span class="nf">adjust_baseline</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adjust CO2 baseline on data of the model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: Implement it.</span>
+        <span class="k">return</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="DataModel.fix_lastknown"><a class="viewcode-back" href="../../da_datafix.html#da_datafix.model.DataModel.fix_lastknown">[docs]</a>    <span class="k">def</span> <span class="nf">fix_lastknown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">fields</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fix missing data in specific fields by using last known good value.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            *fields: list of field name strings. &quot;*&quot; can be used to apply to all fields.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;making lastknown for </span><span class="si">{</span><span class="n">fields</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;*&quot;</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;If * specified then no other fields can be specified.&quot;</span><span class="p">)</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_fields</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+            <span class="n">fix</span><span class="o">.</span><span class="n">fix_lastknown</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">f</span><span class="p">])</span></div></div>
+
+<span class="c1"># OK: Täita augud eelmise väärtusega vms (eeldatavasti on väiksed augud) - CO2, temperatuur</span>
+<span class="c1"># test slicing</span>
+<span class="c1"># write csv</span>
+<span class="c1"># split to different fields.</span>
+<span class="c1"># OK: test slicing</span>
+<span class="c1"># TODO: CO2 baastaseme muutus</span>
+<span class="c1"># TODO: Kumulatiivsete andmete aukude täitmine - elekter, soojus, vesi (see mis arutasime, Kalman filter ilmselt?)</span>
+<span class="c1"># TODO: https://gitlab.com/gitlab-org/gitlab/-/issues/209301</span>
+<span class="c1"># TODO: check SOC format, if it can be imported same? There is no csv? Only what we got from whoeverit was?</span>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">da_datafix  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">da_datafix.model</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Lauri Vihman.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>
