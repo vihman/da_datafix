@@ -95,7 +95,7 @@ class DataModel:
         # TODO: Implement it.
         return NotImplementedError
 
-    def fix_lastknown(self, *fields: list[str]):
+    def fix_lastknown(self, *fields: str):
         """
         Fix missing data in specific fields by using last known good value.
 

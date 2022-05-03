@@ -35,7 +35,7 @@ def mocked_co2_file(monkeypatch):
 
 def test_city(mocked_co2_file):
     model = from_csv("MOCKED FILENAME")
-    data = model.get_data_np()
+    data = model.get_data()
     assert data.shape == (8,)
     assert data["440_value"][0] == 602.0
     assert data["205_value"][1] == 463.0
