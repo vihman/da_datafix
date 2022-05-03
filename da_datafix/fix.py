@@ -1,5 +1,3 @@
-from bisect import bisect
-
 import numpy as np
 
 
@@ -18,4 +16,3 @@ def fix_lastknown(vec: np.array) -> None:
         if np.isnan(elem):
             vec[i] = prev_elem
         prev_elem = vec[i]
-

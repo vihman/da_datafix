@@ -1,4 +1,4 @@
-Digiaudit Data Control and Manipulation package
+DA Data Control and Manipulation package
 ###############################################
 
 
@@ -6,7 +6,7 @@ Installation
 ============
 
 Can be installed in either use in editable or build mode. Editable mode allow easier updates, you just have
-to update the repository directory.
+to update the repository directory. Contributing is also smoother.
 
 Editable mode
 -------------
@@ -35,7 +35,7 @@ Build package
 Examples
 ========
 
-_Loading data from CSV file._
+Loading data from CSV file.
 
 .. code-block:: python
 
@@ -58,6 +58,7 @@ Imputating all data fields' missing values with Last Known Good value.
 Slicing time window:
 
 .. code-block:: python
+
     start = datetime.fromisoformat("2021-10-08")
     end = datetime.fromisoformat("2021-10-10")
     data_win = temp.get_data_window(start_time=start, end_time=end)

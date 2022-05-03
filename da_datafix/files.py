@@ -55,14 +55,15 @@ def from_csv(filename: str, headerline: Optional[bool] = True) -> DataModel:
                         elem, _ = elem.rsplit(" ", maxsplit=1)
                     except Exception as e:
                         logger.error("Timezone value expected but not found.")
-                    try: # Feb 22 and newer format
+                        raise e
+                    try:  # Feb 22 and newer format
                         result.append(datetime.strptime(elem, "%d-%b-%y %I:%M:%S %p"))
                         continue
                     except ValueError as e:
                         logger.debug("Date conversion failed for format: row_no:[%s] [%s]: %s. Trying older. format",
                                      no, elem, e, )
 
-                    try:  #  Jan 22 and older format - 1 Jan 2022 0:00:00
+                    try:  # Jan 22 and older format - 1 Jan 2022 0:00:00
                         for k, v in months.items():
                             elem = re.sub(k, v, elem)
                         result.append(datetime.strptime(elem, "%d %b %Y %H:%M:%S"))
@@ -79,7 +80,7 @@ def from_csv(filename: str, headerline: Optional[bool] = True) -> DataModel:
             return tuple(result)
         if '"' in line:  # This is old style format - "34,56","78,90"
             elements = re.split(r',(?=["n])', line)  # nan is without quotes
-            elements = [re.sub(r'"?(\d+),(\d+)"?', r"\1.\2", e) for e in elements] # commas to dots & strip quotes if needed
+            elements = [re.sub(r'"?(\d+),(\d+)"?', r"\1.\2", e) for e in elements]  # commas to dots & strip quotes if needed
         else:
             elements = line.split(delimiter)
         converted_line = convert_types(elements)

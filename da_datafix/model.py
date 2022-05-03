@@ -11,6 +11,7 @@ import da_datafix.fix as fix
 
 logger = logging.getLogger(__file__)
 
+
 class DataModel:
     """
      Digiaudit time series data model. Data is kept in numpy structured arrays.
@@ -84,7 +85,7 @@ class DataModel:
         return self.data.dtype.names
 
     def _add_field(self, dat, kf_smooth):
-        recfunctions.append_fields(dat,'KF_Smooth', kf_smooth, fill_value=None, asrecarray=False)
+        recfunctions.append_fields(dat, 'KF_Smooth', kf_smooth, fill_value=None, asrecarray=False)
         return NotImplementedError
 
     def adjust_baseline(self):
