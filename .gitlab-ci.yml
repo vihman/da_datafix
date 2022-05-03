@@ -1,0 +1,29 @@
+image: python:3.9
+
+before_script:
+  - pip install -r requirements.txt -r dev-requirements.txt
+
+build:
+  stage: build
+  script:
+    - python -m build --wheel
+  artifacts:
+    paths:
+      - dist
+
+test:
+  stage: test
+  script:
+    - python -m pytest
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+    
+pages:
+  stage: deploy
+  script:
+  - sphinx-build -b html sphinx public
+  artifacts:
+    paths:
+    - public
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
