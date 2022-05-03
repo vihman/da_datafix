@@ -1,0 +1,228 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>da_datafix package &#8212; da_datafix  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="DA Data Control and Manipulation package" href="readme.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="readme.html" title="DA Data Control and Manipulation package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">da_datafix  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">da_datafix package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="da-datafix-package">
+<h1>da_datafix package<a class="headerlink" href="#da-datafix-package" title="Permalink to this headline">¶</a></h1>
+<section id="module-da_datafix.files">
+<span id="files"></span><h2>files<a class="headerlink" href="#module-da_datafix.files" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="da_datafix.files.from_csv">
+<span class="sig-prename descclassname"><span class="pre">da_datafix.files.</span></span><span class="sig-name descname"><span class="pre">from_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headerline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#da_datafix.model.DataModel" title="da_datafix.model.DataModel"><span class="pre">da_datafix.model.DataModel</span></a></span></span><a class="reference internal" href="_modules/da_datafix/files.html#from_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.files.from_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse <a class="reference external" href="https://livettu.sharepoint.com/:f:/s/SmartCityChallenge-Buildingenergyandindoorclimateaudit/Eua5ItsGNzxEvO58IygI6LMBluAV2q31a5ttRl_cGE-22Q">Annelinna csv format</a> file and generate model from it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – of the csv.</p></li>
+<li><p><strong>headerline</strong> – bool header line for extracting datafields.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns: model</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="da_datafix.files.to_pickle">
+<span class="sig-prename descclassname"><span class="pre">da_datafix.files.</span></span><span class="sig-name descname"><span class="pre">to_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#da_datafix.model.DataModel" title="da_datafix.model.DataModel"><span class="pre">da_datafix.model.DataModel</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/files.html#to_pickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.files.to_pickle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save model to Pandas pickle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – to save</p></li>
+<li><p><strong>model</strong> – to save</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-da_datafix.model">
+<span id="model"></span><h2>model<a class="headerlink" href="#module-da_datafix.model" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="da_datafix.model.DataModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">da_datafix.model.</span></span><span class="sig-name descname"><span class="pre">DataModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datalist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.dtype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Digiaudit time series data model. Data is kept in numpy structured arrays.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="da_datafix.model.DataModel.adjust_baseline">
+<span class="sig-name descname"><span class="pre">adjust_baseline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.adjust_baseline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.adjust_baseline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjust CO2 baseline on data of the model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="da_datafix.model.DataModel.fix_lastknown">
+<span class="sig-name descname"><span class="pre">fix_lastknown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.fix_lastknown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.fix_lastknown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fix missing data in specific fields by using last known good value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>*fields</strong> – list of field name strings. “*” can be used to apply to all fields.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="da_datafix.model.DataModel.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get data as numpy structured array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/user/basics.rec.html">Structured numpy array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="da_datafix.model.DataModel.get_data_pd">
+<span class="sig-name descname"><span class="pre">get_data_pd</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_data_pd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_data_pd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy data as Pandas Dataframe object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>data as pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="da_datafix.model.DataModel.get_data_window">
+<span class="sig-name descname"><span class="pre">get_data_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'timestamp'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_data_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_data_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get slice data to only needed time window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_field</strong> – field name of timestamp values for slicing.</p></li>
+<li><p><strong>start_time</strong> – starting time of the slice. Will be included in slice.</p></li>
+<li><p><strong>end_time</strong> – ending time of the slice. Will be included.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/user/basics.rec.html">Structured numpy array</a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="da_datafix.model.DataModel.get_fields">
+<span class="sig-name descname"><span class="pre">get_fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get named fields of model’s data structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of field names.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">da_datafix package</a><ul>
+<li><a class="reference internal" href="#module-da_datafix.files">files</a></li>
+<li><a class="reference internal" href="#module-da_datafix.model">model</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="readme.html"
+                          title="previous chapter">DA Data Control and Manipulation package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/da_datafix.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="readme.html" title="DA Data Control and Manipulation package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">da_datafix  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">da_datafix package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Lauri Vihman.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>
