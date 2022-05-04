@@ -14,12 +14,12 @@ logger = logging.getLogger(__file__)
 
 class DataModel:
     """
-     Digiaudit time series data model. Data is kept in numpy structured arrays.
+     Digiaudit time series data model. Data is kept in `Structured numpy array`_.
     """
 
     def __init__(self, datalist: list, dtype: np.dtype):
         """
-        Init model. Better to do it from fileimport
+        Init model. On practice better to do from fileimport
 
         Args:
             datalist: list to be converted to ndArray.
@@ -113,7 +113,7 @@ class DataModel:
 # OK: Täita augud eelmise väärtusega vms (eeldatavasti on väiksed augud) - CO2, temperatuur
 # test slicing
 # write csv
-# split to different fields.
+# TODO: split to different fields.
 # OK: test slicing
 # TODO: CO2 baastaseme muutus
 # TODO: Kumulatiivsete andmete aukude täitmine - elekter, soojus, vesi (see mis arutasime, Kalman filter ilmselt?)

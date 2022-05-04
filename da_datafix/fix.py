@@ -5,6 +5,7 @@ def fix_lastknown(vec: np.array) -> None:
     """
     Fix all nan values in vector to Last Known Good Value.
     If first value is missing, it will remain nan.
+
     Args:
         vec: vector of values to change
 

@@ -1,4 +1,4 @@
-da_datafix package
+API
 ==================
 
 
@@ -6,6 +6,14 @@ files
 ---------------
 
 .. automodule:: da_datafix.files
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+fix
+---------------
+
+.. automodule:: da_datafix.fix
    :members:
    :undoc-members:
    :show-inheritance:
