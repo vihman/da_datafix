@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>DA Data Control and Manipulation package &#8212; da_datafix  documentation</title>
+    <title>Installation &#8212; da_datafix  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
     
@@ -18,8 +18,8 @@
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="da_datafix package" href="da_datafix.html" />
-    <link rel="prev" title="Digiaudit Data Fixing package" href="index.html" />
+    <link rel="next" title="API" href="da_datafix.html" />
+    <link rel="prev" title="DA Data Fixing package" href="index.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -35,13 +35,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="da_datafix.html" title="da_datafix package"
+          <a href="da_datafix.html" title="API"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Digiaudit Data Fixing package"
+          <a href="index.html" title="DA Data Fixing package"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">da_datafix  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">DA Data Control and Manipulation package</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Installation</a></li> 
       </ul>
     </div>  
 
@@ -50,14 +50,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="da-data-control-and-manipulation-package">
-<h1>DA Data Control and Manipulation package<a class="headerlink" href="#da-data-control-and-manipulation-package" title="Permalink to this headline">¶</a></h1>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>Can be installed in either use in editable or build mode. Editable mode allow easier updates, you just have
-to update the repository directory. Contributing is also smoother.</p>
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>Can be installed in either use in editable, build or wheel mode. Editable mode allows easier updates, just pull
+the repository directory. Contributing is also smoother with editable.</p>
 <section id="editable-mode">
-<h3>Editable mode<a class="headerlink" href="#editable-mode" title="Permalink to this headline">¶</a></h3>
+<h2>Editable mode<a class="headerlink" href="#editable-mode" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>clone repository</p></li>
 <li><p>(activate your used virtualenv if needed)</p></li>
@@ -69,25 +67,33 @@ $ pip install -e .
 </pre></div>
 </div>
 </section>
-<section id="build-package">
-<h3>Build package<a class="headerlink" href="#build-package" title="Permalink to this headline">¶</a></h3>
+<section id="build-mode">
+<h2>Build mode<a class="headerlink" href="#build-mode" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ cd da_datafix
-$ python setup.py bdist_wheel
+$ pip install -r requirements.txt -r dev-requirements.txt
+$ python -m build -w
 $ cd ../my_main_project
 $ pip install da_datafix -f ../da_datafix/dist/
 </pre></div>
 </div>
 </section>
+<section id="wheel-mode">
+<h2>Wheel mode<a class="headerlink" href="#wheel-mode" title="Permalink to this headline">¶</a></h2>
+<p>Download the .whl fire from latest release. Install it using pip e.g.:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ pip install  da_datafix-2022.5.4-py3-none-any.whl
+</pre></div>
+</div>
+</section>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>Loading data from CSV file.</p>
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<p><em>Loading data from CSV file.</em></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">da_datafix.files</span> <span class="kn">import</span> <span class="n">from_csv</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">from_csv</span><span class="p">(</span><span class="s2">&quot;mydatafile&quot;</span><span class="p">)</span>
 <span class="n">dat</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Imputating all data fields’ missing values with Last Known Good value.</p>
+<p><em>Imputating all data fields’ missing values with Last Known Good value.</em></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">da_datafix.files</span> <span class="kn">import</span> <span class="n">from_csv</span>
 <span class="n">temp</span> <span class="o">=</span> <span class="n">from_csv</span><span class="p">(</span><span class="s2">&quot;temperature.csv&quot;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">get_fields</span><span class="p">())</span>
@@ -95,16 +101,19 @@ $ pip install da_datafix -f ../da_datafix/dist/
 <span class="n">temp_pandas</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">get_data_pd</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Slicing time window:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="s2">&quot;2021-10-08&quot;</span><span class="p">)</span>
+<p><em>Slicing time window:</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="s2">&quot;2021-10-08&quot;</span><span class="p">)</span>
 <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="s2">&quot;2021-10-10&quot;</span><span class="p">)</span>
-<span class="n">data_win</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">get_data_window</span><span class="p">(</span><span class="n">start_time</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end_time</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_win</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span> <span class="n">data_win</span><span class="p">[</span><span class="s2">&quot;139_value&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;139&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_win</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span> <span class="n">data_win</span><span class="p">[</span><span class="s2">&quot;140_value&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;140&quot;</span><span class="p">)</span>
+<span class="n">data_slice</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">get_data_window</span><span class="p">(</span><span class="n">start_time</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end_time</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">get_fields</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">field</span> <span class="o">==</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_slice</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span> <span class="n">data_slice</span><span class="p">[</span><span class="n">field</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">field</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
 </section>
 
 
@@ -117,27 +126,25 @@ $ pip install da_datafix -f ../da_datafix/dist/
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">DA Data Control and Manipulation package</a><ul>
-<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
 <li><a class="reference internal" href="#editable-mode">Editable mode</a></li>
-<li><a class="reference internal" href="#build-package">Build package</a></li>
+<li><a class="reference internal" href="#build-mode">Build mode</a></li>
+<li><a class="reference internal" href="#wheel-mode">Wheel mode</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
-</ul>
-</li>
 </ul>
 
   </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="index.html"
-                          title="previous chapter">Digiaudit Data Fixing package</a></p>
+                          title="previous chapter">DA Data Fixing package</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
     <p class="topless"><a href="da_datafix.html"
-                          title="next chapter">da_datafix package</a></p>
+                          title="next chapter">API</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -170,13 +177,13 @@ $ pip install da_datafix -f ../da_datafix/dist/
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="da_datafix.html" title="da_datafix package"
+          <a href="da_datafix.html" title="API"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Digiaudit Data Fixing package"
+          <a href="index.html" title="DA Data Fixing package"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">da_datafix  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">DA Data Control and Manipulation package</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Installation</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
