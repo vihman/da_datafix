@@ -42,22 +42,3 @@ def fix_baseline(vec: np.array, window_size=288, bottom=0, base=400):
         return np.concatenate((np.ones(window_size) * result[0], np.array(result)),)
     bl = get_baseline(vec, window_size, bottom)
     vec[...] = vec - bl + base
-
-
-def get_baseline_using_percentile(co2, wsize=12, percentile=0):
-
-    result = []
-    if wsize >= len(co2):
-        return np.ones(len(co2)) * np.median(co2)
-    else:
-        i = len(co2) - wsize
-        for _ in range (wsize):
-            result.append(np.nan)
-
-        for j in range(i):
-            a = 1
-            slice = co2[j:j+wsize]
-            p = np.percentile(slice, percentile, axis=0)
-            med = np.median(p)
-            result.append(med)
-    return np.array(result)  # , dtype=np.float64)
