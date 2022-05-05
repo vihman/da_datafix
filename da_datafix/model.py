@@ -19,7 +19,7 @@ class DataModel:
 
     def __init__(self, datalist: list, dtype: np.dtype):
         """
-        Init model. On practice better to do from fileimport
+        Init model. In practice better to do from files.from_csv.
 
         Args:
             datalist: list to be converted to ndArray.
@@ -30,12 +30,12 @@ class DataModel:
     def get_data_window(self, start_time: datetime, end_time: datetime,
                         time_field: Optional[str] = "timestamp") -> np.array:
         """
-        Get slice data to only needed time window.
+        Get sliced data to only needed time window. Doesn't affect model.
 
         Args:
-            time_field: field name of timestamp values for slicing.
             start_time: starting time of the slice. Will be included in slice.
             end_time:  ending time of the slice. Will be included.
+            time_field: [Optional] field name of timestamp values for slicing.
 
         Returns:
             `Structured numpy array`_.
@@ -53,6 +53,15 @@ class DataModel:
         start_idx = max(get_idx(start_time, self.data) - 1, 0)
         end_idx = get_idx(end_time, self.data)
         return self.data[start_idx:end_idx]
+
+    def set_data_window(self, start_time: datetime, end_time: datetime):
+        """
+        Set model's data to only specified time window.
+
+        :param start_time: of window
+        :param end_time:  of window
+        """
+        self.data = self.get_data_window(start_time, end_time)
 
     def get_data(self) -> np.array:
         """
@@ -88,12 +97,14 @@ class DataModel:
         recfunctions.append_fields(dat, 'KF_Smooth', kf_smooth, fill_value=None, asrecarray=False)
         return NotImplementedError
 
-    def adjust_baseline(self):
+    def fix_baseline(self, field: str):
         """
         Adjust CO2 baseline on data of the model.
+
+        Args:
+            field: field name of the data to fix.
         """
-        # TODO: Implement it.
-        return NotImplementedError
+        fix.fix_baseline(self.data[field])
 
     def fix_lastknown(self, *fields: str):
         """
@@ -110,12 +121,5 @@ class DataModel:
         for f in fields:
             fix.fix_lastknown(self.data[f])
 
-# OK: Täita augud eelmise väärtusega vms (eeldatavasti on väiksed augud) - CO2, temperatuur
-# test slicing
-# write csv
-# TODO: split to different fields.
-# OK: test slicing
-# TODO: CO2 baastaseme muutus
+
 # TODO: Kumulatiivsete andmete aukude täitmine - elekter, soojus, vesi (see mis arutasime, Kalman filter ilmselt?)
-# TODO: https://gitlab.com/gitlab-org/gitlab/-/issues/209301
-# TODO: check SOC format, if it can be imported same? There is no csv? Only what we got from whoeverit was?

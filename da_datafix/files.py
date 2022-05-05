@@ -12,8 +12,6 @@ months = {
     "jaan": "Jan",
     "dets": "Dec",
     "okt": "Oct"
-    # "nov": None,
-    # data/12.2021/Report_CO2.csv
 }
 
 
@@ -32,26 +30,30 @@ def _convert_types(rowarr: list, timestamp_col) -> tuple:
     result = []
     for no, elem in enumerate(rowarr):
         if no == timestamp_col:
-            try:
-                # timezone element %Z can be undefined and raise exception on some platform C library.
-                # Better not to use it. Let's strip Timezone for now, maybe later use or convert UTC.
-                elem, _ = elem.rsplit(" ", maxsplit=1)
-            except Exception as e:
-                logger.error("Timezone value expected but not found.")
-                raise e
-            try:  # Feb 22 and newer format
-                result.append(datetime.strptime(elem, "%d-%b-%y %I:%M:%S %p"))
+            # timezone element %Z can be undefined and raise exception on some platform C library.
+            # Better not to use it. Let's strip Timezone for now, maybe later use or convert UTC.
+            _elem, _ = elem.rsplit(" ", maxsplit=1)
+
+            try:  # Feb 22 and newer format: 01-Mar-22 12:35:00 AM EET
+                result.append(datetime.strptime(_elem, "%d-%b-%y %I:%M:%S %p"))
                 continue
             except ValueError as e:
-                logger.debug("Date conversion failed for format: row_no:[%s] [%s]: %s. Trying older format.",
-                             no, elem, e, )
+                logger.debug("Date conversion failed for Feb 22 format: row_no:[%s] [%s]: %s. Trying next format.",
+                             no, _elem, e, )
 
-            try:  # Jan 22 and older format - 1 Jan 2022 0:00:00
+            try:  # Jan 22 and older format: 1 jaan 2022 0:05:00 EET
+                # Change months from estonian if needed
                 for k, v in months.items():
-                    elem = re.sub(k, v, elem)
-                result.append(datetime.strptime(elem, "%d %b %Y %H:%M:%S"))
+                    _elem = re.sub(k, v, _elem)
+                result.append(datetime.strptime(_elem, "%d %b %Y %H:%M:%S"))
+                continue
             except ValueError as e:
-                logger.error("Date conversion failed: row_no:[%s] [%s]: %s", no, elem, e, )
+                logger.debug("Date conversion failed for Sep 21 format: row_no:[%s] [%s]: %s. Trying next format"
+                             , no, _elem, e, )
+            try:  # Aug 21 and older format: 22:45 07.08.2020
+                result.append(datetime.strptime(elem, "%H:%M %d.%m.%Y"))
+            except ValueError as e:
+                logger.error("Date conversion failed: row_no:[%s] [%s]: %s", no, elem, e)
                 raise e
         else:
             try:
@@ -98,7 +100,7 @@ def from_csv(filename: str, headerline: Optional[bool] = True) -> DataModel:
     return DataModel(result, dtype)
 
 
-def to_pickle(filename: str, model: DataModel):
+def to_pickle_pd(filename: str, model: DataModel):
     """
     Save model to Pandas pickle.
 
@@ -109,3 +111,26 @@ def to_pickle(filename: str, model: DataModel):
     dat = model.get_data_pd()
     with open(filename, "wb") as f:
         pickle.dump(dat, f)
+
+
+def to_pickle(filename: str, model: object):
+    """
+    Save object to pickle (e.g. model)
+
+    Args:
+        filename: to save,
+        model: object to save,
+    """
+    with open(filename, "wb") as f:
+        pickle.dump(model, f)
+
+
+def from_pickle(filename):
+    """
+    Loads object from pickle.
+
+    Args:
+        filename: to load.
+    """
+    with open(filename, "rb") as f:
+        return pickle.load(f)

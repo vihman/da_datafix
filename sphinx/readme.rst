@@ -75,3 +75,23 @@ Examples
         plt.plot(data_slice["timestamp"], data_slice[field], label=field)
     plt.legend()
     plt.show()
+
+*Fixing wandering baseline:*
+
+.. code-block:: python
+
+    from da_datafix.fix import fix_baseline
+    room = '337_value'
+    data = model.get_data()
+    fix_baseline(data[room])
+    plt(data["timestamp], data[room])
+    plt.title("Baseline fixed")
+
+or
+
+.. code-block:: python
+
+    model.fix_baseline('337_value')
+    data = model.get_data()
+    plt(data["timestamp], data[room])
+    plt.title("Baseline fixed")
