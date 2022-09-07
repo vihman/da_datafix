@@ -121,5 +121,34 @@ class DataModel:
         for f in fields:
             fix.fix_lastknown(self.data[f])
 
+    def get_occupation_from_co2(self, smoothing_kernel_size: int = 7,
+                                timestamp_field_name: str ="timestamp",
+                                co2_field_name: str= "240_value",
+                                gradient_boundary: float=0.01) -> np.array:
+        """
+        Get occupation of room using CO2 values gradient. This method 1) smoothes the data to reduce false positives 2) calculates gradient of the data
+        3) returns vector of room occupation where gradient is greater of given boundary.
+        Args:
+            timestamp_field_name: data field name for timestamp.
+            co2_field_name: data field name for the co2 values vector.
+            gradient_boundary: boundary counstant of gradient up from where room is considered occupied.
+            smoothing_kernel_size: data convolution kernel size.
+
+        Returns:
+            vector of room occupation: (1==occupied, 0==not occupied)
+        """
+
+        def smooth_data(dta, kernel_size=7):
+            kernel = np.ones(kernel_size) / kernel_size
+            return np.convolve(dta, kernel, mode='same')
+
+        def get_gradient(tsa, smoothed_data):
+            timediff = tsa - tsa[0]
+            gda = np.gradient(smoothed_data, timediff, edge_order=1)
+            return gda
+        smoothed = smooth_data(self.data[co2_field_name], smoothing_kernel_size)
+        grad = get_gradient(self.data[timestamp_field_name], smoothed)
+        occ = np.greater(grad, gradient_boundary)
+        return occ
 
 # TODO: Kumulatiivsete andmete aukude täitmine - elekter, soojus, vesi (see mis arutasime, Kalman filter ilmselt?)

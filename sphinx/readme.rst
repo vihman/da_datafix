@@ -95,3 +95,17 @@ or
     data = model.get_data()
     plt(data["timestamp], data[room])
     plt.title("Baseline fixed")
+
+*Calculating room occupation from CO2 values:*
+
+.. code-block:: python
+
+    model = from_csv("data/CO2_jaanuar22.csv")
+    model.set_data_window(np.datetime64("2022-01-16"), np.datetime64("2022-01-18"))
+    occ = model.get_occupation_from_co2(
+                                        co2_field_name="240_value", gradient_boundary=0.01)
+    d = model.get_data()
+    pyplot.plot(d["timestamp"], d["240_value"], label="CO2")
+    pyplot.plot(d["timestamp"], occ * 500, label="Occ")
+    pyplot.legend()
+    pyplot.show()
