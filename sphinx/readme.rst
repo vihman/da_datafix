@@ -13,8 +13,8 @@ Editable mode
 
 .. code-block:: text
 
-    $ git clone https://github.com/vihman/da_datacontrol.git
-    $ cd da_datacontrol
+    $ git clone https://github.com/vihman/da_datafix.git
+    $ cd da_datafix
     $ pip install -e .
 
 Build mode
@@ -35,7 +35,7 @@ Download the .whl fire from latest release. Install it using pip e.g.:
 
 .. code-block:: text
 
-    $ pip install  da_datafix-2022.5.4-py3-none-any.whl
+    $ pip install  da_datafix-2022.5.5-py3-none-any.whl
 
 
 Examples
