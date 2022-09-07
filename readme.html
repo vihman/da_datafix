@@ -2,10 +2,10 @@
 
 <!doctype html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Installation &#8212; da_datafix  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -14,6 +14,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -51,11 +52,11 @@
           <div class="body" role="main">
             
   <section id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h1>
 <p>Can be installed in either use in editable, build or wheel mode. Editable mode allows easier updates, just pull
 the repository directory. Contributing is also smoother with editable.</p>
 <section id="editable-mode">
-<h2>Editable mode<a class="headerlink" href="#editable-mode" title="Permalink to this headline">¶</a></h2>
+<h2>Editable mode<a class="headerlink" href="#editable-mode" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>clone repository</p></li>
 <li><p>(activate your used virtualenv if needed)</p></li>
@@ -68,7 +69,7 @@ $ pip install -e .
 </div>
 </section>
 <section id="build-mode">
-<h2>Build mode<a class="headerlink" href="#build-mode" title="Permalink to this headline">¶</a></h2>
+<h2>Build mode<a class="headerlink" href="#build-mode" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ cd da_datafix
 $ pip install -r requirements.txt -r dev-requirements.txt
 $ python -m build -w
@@ -78,7 +79,7 @@ $ pip install da_datafix -f ../da_datafix/dist/
 </div>
 </section>
 <section id="wheel-mode">
-<h2>Wheel mode<a class="headerlink" href="#wheel-mode" title="Permalink to this headline">¶</a></h2>
+<h2>Wheel mode<a class="headerlink" href="#wheel-mode" title="Permalink to this heading">¶</a></h2>
 <p>Download the .whl fire from latest release. Install it using pip e.g.:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ pip install  da_datafix-2022.5.5-py3-none-any.whl
 </pre></div>
@@ -86,7 +87,7 @@ $ pip install da_datafix -f ../da_datafix/dist/
 </section>
 </section>
 <section id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h1>
 <p><em>Loading data from CSV file.</em></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">da_datafix.files</span> <span class="kn">import</span> <span class="n">from_csv</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">from_csv</span><span class="p">(</span><span class="s2">&quot;mydatafile&quot;</span><span class="p">)</span>
@@ -128,6 +129,18 @@ $ pip install da_datafix -f ../da_datafix/dist/
 <span class="n">data</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
 <span class="n">plt</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;timestamp], data[room])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Baseline fixed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>Calculating room occupation from CO2 values:</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">from_csv</span><span class="p">(</span><span class="s2">&quot;data/CO2_jaanuar22.csv&quot;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">set_data_window</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">&quot;2022-01-16&quot;</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">&quot;2022-01-18&quot;</span><span class="p">))</span>
+<span class="n">occ</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_occupation_from_co2</span><span class="p">(</span>
+                                    <span class="n">co2_field_name</span><span class="o">=</span><span class="s2">&quot;240_value&quot;</span><span class="p">,</span> <span class="n">gradient_boundary</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;240_value&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;CO2&quot;</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span> <span class="n">occ</span> <span class="o">*</span> <span class="mi">500</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Occ&quot;</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -178,7 +191,7 @@ $ pip install da_datafix -f ../da_datafix/dist/
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -204,7 +217,7 @@ $ pip install da_datafix -f ../da_datafix/dist/
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2022, Lauri Vihman.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
     </div>
   </body>
 </html>

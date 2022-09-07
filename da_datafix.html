@@ -2,10 +2,10 @@
 
 <!doctype html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>API &#8212; da_datafix  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -14,6 +14,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -47,15 +48,15 @@
           <div class="body" role="main">
             
   <section id="api">
-<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<h1>API<a class="headerlink" href="#api" title="Permalink to this heading">¶</a></h1>
 <section id="module-da_datafix.files">
-<span id="files"></span><h2>files<a class="headerlink" href="#module-da_datafix.files" title="Permalink to this headline">¶</a></h2>
+<span id="files"></span><h2>files<a class="headerlink" href="#module-da_datafix.files" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="da_datafix.files.from_csv">
-<span class="sig-prename descclassname"><span class="pre">da_datafix.files.</span></span><span class="sig-name descname"><span class="pre">from_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headerline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#da_datafix.model.DataModel" title="da_datafix.model.DataModel"><span class="pre">da_datafix.model.DataModel</span></a></span></span><a class="reference internal" href="_modules/da_datafix/files.html#from_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.files.from_csv" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">da_datafix.files.</span></span><span class="sig-name descname"><span class="pre">from_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headerline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#da_datafix.model.DataModel" title="da_datafix.model.DataModel"><span class="pre">DataModel</span></a></span></span><a class="reference internal" href="_modules/da_datafix/files.html#from_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.files.from_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse <a class="reference external" href="https://livettu.sharepoint.com/:f:/s/SmartCityChallenge-Buildingenergyandindoorclimateaudit/Eua5ItsGNzxEvO58IygI6LMBluAV2q31a5ttRl_cGE-22Q">Annelinna csv format</a> file and generate model from it.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> – of the csv.</p></li>
 <li><p><strong>headerline</strong> – bool header line for extracting datafields.</p></li>
@@ -70,7 +71,7 @@
 <span class="sig-prename descclassname"><span class="pre">da_datafix.files.</span></span><span class="sig-name descname"><span class="pre">from_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/files.html#from_pickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.files.from_pickle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads object from pickle.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>filename</strong> – to load.</p>
 </dd>
 </dl>
@@ -81,7 +82,7 @@
 <span class="sig-prename descclassname"><span class="pre">da_datafix.files.</span></span><span class="sig-name descname"><span class="pre">to_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/files.html#to_pickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.files.to_pickle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save object to pickle (e.g. model)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> – to save,</p></li>
 <li><p><strong>model</strong> – object to save,</p></li>
@@ -92,10 +93,10 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="da_datafix.files.to_pickle_pd">
-<span class="sig-prename descclassname"><span class="pre">da_datafix.files.</span></span><span class="sig-name descname"><span class="pre">to_pickle_pd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#da_datafix.model.DataModel" title="da_datafix.model.DataModel"><span class="pre">da_datafix.model.DataModel</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/files.html#to_pickle_pd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.files.to_pickle_pd" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">da_datafix.files.</span></span><span class="sig-name descname"><span class="pre">to_pickle_pd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#da_datafix.model.DataModel" title="da_datafix.model.DataModel"><span class="pre">DataModel</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/files.html#to_pickle_pd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.files.to_pickle_pd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save model to Pandas pickle.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> – to save</p></li>
 <li><p><strong>model</strong> – to save</p></li>
@@ -106,14 +107,14 @@
 
 </section>
 <section id="module-da_datafix.fix">
-<span id="fix"></span><h2>fix<a class="headerlink" href="#module-da_datafix.fix" title="Permalink to this headline">¶</a></h2>
+<span id="fix"></span><h2>fix<a class="headerlink" href="#module-da_datafix.fix" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="da_datafix.fix.fix_baseline">
-<span class="sig-prename descclassname"><span class="pre">da_datafix.fix.</span></span><span class="sig-name descname"><span class="pre">fix_baseline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">288</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/fix.html#fix_baseline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.fix.fix_baseline" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">da_datafix.fix.</span></span><span class="sig-name descname"><span class="pre">fix_baseline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">288</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/fix.html#fix_baseline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.fix.fix_baseline" title="Permalink to this definition">¶</a></dt>
 <dd><p>In case the sensors jump baseline value (autocalibration?) this method fixes the baseline value naively.
 It is using median of specified percentile of the specified time window.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>vec</strong> – vector to change baseline of.</p></li>
 <li><p><strong>window_size</strong> – number of values to include in window. In case measurements are in 5 min interval and we want 24h window - <cite>int(24*60/5) == 288</cite></p></li>
@@ -126,11 +127,11 @@ It is using median of specified percentile of the specified time window.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="da_datafix.fix.fix_lastknown">
-<span class="sig-prename descclassname"><span class="pre">da_datafix.fix.</span></span><span class="sig-name descname"><span class="pre">fix_lastknown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/da_datafix/fix.html#fix_lastknown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.fix.fix_lastknown" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">da_datafix.fix.</span></span><span class="sig-name descname"><span class="pre">fix_lastknown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/da_datafix/fix.html#fix_lastknown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.fix.fix_lastknown" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fix all nan values in vector to Last Known Good Value.
 If first value is missing, it will remain nan.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>vec</strong> – vector of values to change</p>
 </dd>
 </dl>
@@ -139,10 +140,10 @@ If first value is missing, it will remain nan.</p>
 
 </section>
 <section id="module-da_datafix.model">
-<span id="model"></span><h2>model<a class="headerlink" href="#module-da_datafix.model" title="Permalink to this headline">¶</a></h2>
+<span id="model"></span><h2>model<a class="headerlink" href="#module-da_datafix.model" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="da_datafix.model.DataModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">da_datafix.model.</span></span><span class="sig-name descname"><span class="pre">DataModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datalist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.dtype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">da_datafix.model.</span></span><span class="sig-name descname"><span class="pre">DataModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datalist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dtype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Digiaudit time series data model. Data is kept in <a class="reference external" href="https://numpy.org/doc/stable/user/basics.rec.html">Structured numpy array</a>.</p>
 <dl class="py method">
@@ -150,7 +151,7 @@ If first value is missing, it will remain nan.</p>
 <span class="sig-name descname"><span class="pre">fix_baseline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.fix_baseline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.fix_baseline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adjust CO2 baseline on data of the model.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field</strong> – field name of the data to fix.</p>
 </dd>
 </dl>
@@ -161,7 +162,7 @@ If first value is missing, it will remain nan.</p>
 <span class="sig-name descname"><span class="pre">fix_lastknown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.fix_lastknown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.fix_lastknown" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fix missing data in specific fields by using last known good value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>*fields</strong> – list of field name strings. “*” can be used to apply to all fields.</p>
 </dd>
 </dl>
@@ -169,10 +170,10 @@ If first value is missing, it will remain nan.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="da_datafix.model.DataModel.get_data">
-<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">array</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get data as numpy structured array.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/user/basics.rec.html">Structured numpy array</a></p>
 </dd>
 </dl>
@@ -180,10 +181,10 @@ If first value is missing, it will remain nan.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="da_datafix.model.DataModel.get_data_pd">
-<span class="sig-name descname"><span class="pre">get_data_pd</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_data_pd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_data_pd" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_data_pd</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_data_pd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_data_pd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Copy data as Pandas Dataframe object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>data as pd.DataFrame</p>
 </dd>
 </dl>
@@ -191,17 +192,17 @@ If first value is missing, it will remain nan.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="da_datafix.model.DataModel.get_data_window">
-<span class="sig-name descname"><span class="pre">get_data_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'timestamp'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_data_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_data_window" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_data_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'timestamp'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">array</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_data_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_data_window" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get sliced data to only needed time window. Doesn’t affect model.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>start_time</strong> – starting time of the slice. Will be included in slice.</p></li>
 <li><p><strong>end_time</strong> – ending time of the slice. Will be included.</p></li>
 <li><p><strong>time_field</strong> – [Optional] field name of timestamp values for slicing.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/user/basics.rec.html">Structured numpy array</a>.</p>
 </dd>
 </dl>
@@ -212,18 +213,37 @@ If first value is missing, it will remain nan.</p>
 <span class="sig-name descname"><span class="pre">get_fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_fields" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get named fields of model’s data structure.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list of field names.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="da_datafix.model.DataModel.get_occupation_from_co2">
+<span class="sig-name descname"><span class="pre">get_occupation_from_co2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smoothing_kernel_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'timestamp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">co2_field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'240_value'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_boundary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">array</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_occupation_from_co2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_occupation_from_co2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get occupation of room using CO2 values gradient. This method 1) smoothes the data to reduce false positives 2) calculates gradient of the data
+3) returns vector of room occupation where gradient is greater of given boundary.
+:param timestamp_field_name: data field name for timestamp.
+:param co2_field_name: data field name for the co2 values vector.
+:param gradient_boundary: boundary counstant of gradient up from where room is considered occupied.
+:param smoothing_kernel_size: data convolution kernel size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(1==occupied, 0==not occupied)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>vector of room occupation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="da_datafix.model.DataModel.set_data_window">
-<span class="sig-name descname"><span class="pre">set_data_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.set_data_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.set_data_window" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_data_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.set_data_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.set_data_window" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set model’s data to only specified time window.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>start_time</strong> – of window</p></li>
 <li><p><strong>end_time</strong> – of window</p></li>
@@ -277,7 +297,7 @@ If first value is missing, it will remain nan.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -300,7 +320,7 @@ If first value is missing, it will remain nan.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2022, Lauri Vihman.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
     </div>
   </body>
 </html>
