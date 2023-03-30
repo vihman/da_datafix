@@ -12,10 +12,8 @@
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
     
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -53,7 +51,7 @@
 <span id="files"></span><h2>files<a class="headerlink" href="#module-da_datafix.files" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="da_datafix.files.from_csv">
-<span class="sig-prename descclassname"><span class="pre">da_datafix.files.</span></span><span class="sig-name descname"><span class="pre">from_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headerline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#da_datafix.model.DataModel" title="da_datafix.model.DataModel"><span class="pre">DataModel</span></a></span></span><a class="reference internal" href="_modules/da_datafix/files.html#from_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.files.from_csv" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">da_datafix.files.</span></span><span class="sig-name descname"><span class="pre">from_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headerline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#da_datafix.model.DataModel" title="da_datafix.model.DataModel"><span class="pre">DataModel</span></a></span></span><a class="reference internal" href="_modules/da_datafix/files.html#from_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.files.from_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse <a class="reference external" href="https://livettu.sharepoint.com/:f:/s/SmartCityChallenge-Buildingenergyandindoorclimateaudit/Eua5ItsGNzxEvO58IygI6LMBluAV2q31a5ttRl_cGE-22Q">Annelinna csv format</a> file and generate model from it.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -138,6 +136,29 @@ If first value is missing, it will remain nan.</p>
 <p>Returns:</p>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="da_datafix.fix.get_fixed_baseline">
+<span class="sig-prename descclassname"><span class="pre">da_datafix.fix.</span></span><span class="sig-name descname"><span class="pre">get_fixed_baseline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">288</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/da_datafix/fix.html#get_fixed_baseline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.fix.get_fixed_baseline" title="Permalink to this definition">¶</a></dt>
+<dd><p>In case the sensors jump baseline value (autocalibration?) this method fixes the baseline value naively.
+It is using median of specified percentile of the specified time window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vec</strong> – vector to change baseline of.</p></li>
+<li><p><strong>window_size</strong> – number of values to include in window. In case measurements are in 5 min interval and we want 24h window - <cite>int(24*60/5) == 288</cite></p></li>
+<li><p><strong>bottom</strong> – percentile what’s median value is used for baseline.</p></li>
+<li><p><strong>base</strong> – The value that is supposed to be the regular baseline.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>vector, the fixed CO2 values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>vec</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-da_datafix.model">
 <span id="model"></span><h2>model<a class="headerlink" href="#module-da_datafix.model" title="Permalink to this heading">¶</a></h2>
@@ -192,7 +213,7 @@ If first value is missing, it will remain nan.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="da_datafix.model.DataModel.get_data_window">
-<span class="sig-name descname"><span class="pre">get_data_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'timestamp'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">array</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_data_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_data_window" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_data_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'timestamp'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">array</span></span></span><a class="reference internal" href="_modules/da_datafix/model.html#DataModel.get_data_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#da_datafix.model.DataModel.get_data_window" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get sliced data to only needed time window. Doesn’t affect model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -268,9 +289,33 @@ If first value is missing, it will remain nan.</p>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">API</a><ul>
-<li><a class="reference internal" href="#module-da_datafix.files">files</a></li>
-<li><a class="reference internal" href="#module-da_datafix.fix">fix</a></li>
-<li><a class="reference internal" href="#module-da_datafix.model">model</a></li>
+<li><a class="reference internal" href="#module-da_datafix.files">files</a><ul>
+<li><a class="reference internal" href="#da_datafix.files.from_csv"><code class="docutils literal notranslate"><span class="pre">from_csv()</span></code></a></li>
+<li><a class="reference internal" href="#da_datafix.files.from_pickle"><code class="docutils literal notranslate"><span class="pre">from_pickle()</span></code></a></li>
+<li><a class="reference internal" href="#da_datafix.files.to_pickle"><code class="docutils literal notranslate"><span class="pre">to_pickle()</span></code></a></li>
+<li><a class="reference internal" href="#da_datafix.files.to_pickle_pd"><code class="docutils literal notranslate"><span class="pre">to_pickle_pd()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-da_datafix.fix">fix</a><ul>
+<li><a class="reference internal" href="#da_datafix.fix.fix_baseline"><code class="docutils literal notranslate"><span class="pre">fix_baseline()</span></code></a></li>
+<li><a class="reference internal" href="#da_datafix.fix.fix_lastknown"><code class="docutils literal notranslate"><span class="pre">fix_lastknown()</span></code></a></li>
+<li><a class="reference internal" href="#da_datafix.fix.get_fixed_baseline"><code class="docutils literal notranslate"><span class="pre">get_fixed_baseline()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-da_datafix.model">model</a><ul>
+<li><a class="reference internal" href="#da_datafix.model.DataModel"><code class="docutils literal notranslate"><span class="pre">DataModel</span></code></a><ul>
+<li><a class="reference internal" href="#da_datafix.model.DataModel.fix_baseline"><code class="docutils literal notranslate"><span class="pre">DataModel.fix_baseline()</span></code></a></li>
+<li><a class="reference internal" href="#da_datafix.model.DataModel.fix_lastknown"><code class="docutils literal notranslate"><span class="pre">DataModel.fix_lastknown()</span></code></a></li>
+<li><a class="reference internal" href="#da_datafix.model.DataModel.get_data"><code class="docutils literal notranslate"><span class="pre">DataModel.get_data()</span></code></a></li>
+<li><a class="reference internal" href="#da_datafix.model.DataModel.get_data_pd"><code class="docutils literal notranslate"><span class="pre">DataModel.get_data_pd()</span></code></a></li>
+<li><a class="reference internal" href="#da_datafix.model.DataModel.get_data_window"><code class="docutils literal notranslate"><span class="pre">DataModel.get_data_window()</span></code></a></li>
+<li><a class="reference internal" href="#da_datafix.model.DataModel.get_fields"><code class="docutils literal notranslate"><span class="pre">DataModel.get_fields()</span></code></a></li>
+<li><a class="reference internal" href="#da_datafix.model.DataModel.get_occupation_from_co2"><code class="docutils literal notranslate"><span class="pre">DataModel.get_occupation_from_co2()</span></code></a></li>
+<li><a class="reference internal" href="#da_datafix.model.DataModel.set_data_window"><code class="docutils literal notranslate"><span class="pre">DataModel.set_data_window()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -320,7 +365,7 @@ If first value is missing, it will remain nan.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2022, Lauri Vihman.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
   </body>
 </html>
